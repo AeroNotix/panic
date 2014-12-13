@@ -1,0 +1,6 @@
+{application, panic,
+ [{description, "Debugging utilities"},
+  {vsn, "0.0.1"},
+  {registered, []},
+  {applications, [kernel,
+                  stdlib]}]}.
