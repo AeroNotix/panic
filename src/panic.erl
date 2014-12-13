@@ -12,8 +12,8 @@ find_big_mboxes(N) ->
     FilterBig =
         fun(Pid) ->
                 case process_info(Pid, message_queue_len) of
-                    {_, Size} = All when Size > N ->
-                        {true, All};
+                    {_, Size} when Size > N ->
+                        {true, {Pid, Size}};
                     _ ->
                         false
                 end
