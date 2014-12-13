@@ -1,5 +1,6 @@
 -module(panic).
 
+-export([initial_call/1]).
 -export([find_big_mboxes/1]).
 -export([find_large_memory_consumers/1]).
 
@@ -22,3 +23,8 @@ find_large_memory_consumers(N) ->
                 (_, _) -> false
              end,
     lists:seq(lists:sort(Sorter, Pinfo), N).
+
+initial_call(Pid) when is_pid(Pid) ->
+    Pinfo = process_info(Pid),
+    D = proplists:get_value(dictionary, Pinfo),
+    proplists:get_value('$initial_call', D).
